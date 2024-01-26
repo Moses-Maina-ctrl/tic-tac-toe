@@ -1,10 +1,4 @@
-function showBoard(){
-	let board = [
-		['1','2','3'],
-		['4','5','6'],
-		['7','8','9']
-	];
-}
+
 
 function player(name, marker){
 	this.name = name;
@@ -14,14 +8,27 @@ function player(name, marker){
 function createPlayers(){
 	const player1= new player("player1","X");
 	const player2= new player("player2","O");
-	console.log(player1,player2);
-	return player
+	return {player1, player2}
 
 }
-createPlayers();
+	
+function showBoard(){
+	let board = [
+		['1','2','3'],
+		['4','5','6'],
+		['7','8','9']
+	];
+	let {player1, player2} = createPlayers();
+	console.log(player1, player2);
+	let move= playerMove();
+	console.log(move);
 
-function makeMove(){
-	let board =showBoard();
-	console.log(board);
-}	
-makeMove()
+
+}
+
+showBoard();
+
+function playerMove(){
+	let move = Math.floor(Math.random()*10)
+	return move;
+}
