@@ -20,8 +20,16 @@ function showBoard(){
 	];
 	let {player1, player2} = createPlayers();
 	console.log(player1, player2);
-	let move= playerMove();
+	let move= playerMove().toString();
+
 	console.log(move);
+	let positionIndex= board.indexOf(move);
+	if (positionIndex > -1){
+		board[positionIndex] = "X"
+		console.log(board)
+	}else{
+		console.log("Invalid Move")
+	}
 
 
 }
