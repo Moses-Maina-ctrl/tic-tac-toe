@@ -23,13 +23,10 @@ function showBoard(){
 	let move= playerMove().toString();
 
 	console.log(move);
-	let positionIndex= board.indexOf(move);
-	if (positionIndex > -1){
-		board[positionIndex] = "X"
-		console.log(board)
-	}else{
-		console.log("Invalid Move")
-	}
+	let positionIndex = findPositionIndex(board, move);
+	let row =positionIndex[0], col = positionIndex[1];
+	board[row][col]= "X"
+	console.log(board);
 
 
 }
@@ -39,4 +36,15 @@ showBoard();
 function playerMove(){
 	let move = Math.floor(Math.random()*10)
 	return move;
+}
+
+function findPositionIndex(board,move){
+	let  positionIndex = [].concat.apply([], board).indexOf(move);
+	if(positionIndex === -1){
+		return false;
+	}
+	numColumns = board[0].length;
+	row = parseInt(positionIndex / numColumns);
+	col = positionIndex % numColumns;
+	return [row, col];
 }
