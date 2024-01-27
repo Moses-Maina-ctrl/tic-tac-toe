@@ -27,6 +27,7 @@ function showBoard(){
 	let row =positionIndex[0], col = positionIndex[1];
 	board[row][col]= "X"
 	console.log(board);
+	console.log(player1)
 
 
 }
