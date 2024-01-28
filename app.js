@@ -1,4 +1,5 @@
-
+const playerOneName=  document.querySelector("#playerOneName");
+const playerTwoName=  document.querySelector("#playerTwoName");
 
 function player(name, marker){
 	this.name = name;
@@ -19,25 +20,17 @@ function showBoard(){
 		['7','8','9']
 	];
 	let {player1, player2} = createPlayers();
-	console.log(player1, player2);
-	let move= playerMove().toString();
-
-	console.log(move);
-	let positionIndex = findPositionIndex(board, move);
-	let row =positionIndex[0], col = positionIndex[1];
-	board[row][col]= "X"
-	console.log(board);
-	console.log(player1)
+	player1.name= playerOneName.value;
+	player2.name= playerTwoName.value;
+	console.log(player1.name , player2.name);
 
 
 }
 
-showBoard();
 
-function playerMove(){
-	let move = Math.floor(Math.random()*10)
-	return move;
+function playerMove(player){
 }
+
 
 function findPositionIndex(board,move){
 	let  positionIndex = [].concat.apply([], board).indexOf(move);
