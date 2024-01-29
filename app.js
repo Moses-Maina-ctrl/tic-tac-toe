@@ -1,5 +1,7 @@
 const playerOneName=  document.querySelector("#playerOneName");
 const playerTwoName=  document.querySelector("#playerTwoName");
+const form = document.querySelector(".gameStart");
+const gameBoard = document.querySelector(".load");
 
 function player(name, marker){
 	this.name = name;
@@ -22,11 +24,20 @@ function startGame(){
 	let {player1, player2} = createPlayers();
 	player1.name= playerOneName.value;
 	player2.name= playerTwoName.value;
-	console.log(player1.name , player2.name);
-
-
+	if (player1.name ==''){
+		player1.name="Player 1";
+	}
+	if (player2.name==''){
+		player2.name="Player 2";
+	}
+	console.log(player1, player2);
+	showBoard();
 }
-
+;
+function showBoard(){
+	form.style.display = 'none';
+	gameBoard.style.display = 'block'
+}
 
 function playerMove(player){
 }
