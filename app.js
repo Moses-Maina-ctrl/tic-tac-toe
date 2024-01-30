@@ -3,7 +3,15 @@ const playerTwoName=  document.querySelector("#playerTwoName");
 const form = document.querySelector(".gameStart");
 const gameBoard = document.querySelector(".load");
 
+let board = [
+		['','',''],
+		['','',''],
+		['','','']
+	];
+let player1Turn = true;
+
 function player(name, marker){
+
 	this.name = name;
 	this.marker = marker;
 }
@@ -16,11 +24,19 @@ function createPlayers(){
 }
 	
 function startGame(){
-	let board = [
-		['1','2','3'],
-		['4','5','6'],
-		['7','8','9']
-	];
+showBoard();
+}
+;
+function showBoard(){
+	form.style.display = 'none';
+	gameBoard.style.display = 'block'
+}
+
+function changeTurn(){
+	player1Turn = !player1Turn
+}
+
+function updateGame(r,c){
 	let {player1, player2} = createPlayers();
 	player1.name= playerOneName.value;
 	player2.name= playerTwoName.value;
@@ -30,26 +46,49 @@ function startGame(){
 	if (player2.name==''){
 		player2.name="Player 2";
 	}
-	console.log(player1, player2);
-	showBoard();
-}
-;
-function showBoard(){
-	form.style.display = 'none';
-	gameBoard.style.display = 'block'
-}
 
-function playerMove(player){
-}
-
-
-function findPositionIndex(board,move){
-	let  positionIndex = [].concat.apply([], board).indexOf(move);
-	if(positionIndex === -1){
-		return false;
+	const currentPlayer = player1Turn ? player1 :player2
+	console.log(`currentPlayer: ${currentPlayer.name}`)
+	console.log(player1.name, player2.name);
+	if( board[r][c] == ''){
+		board[r][c] = currentPlayer.marker;
+		console.log(board)
+		if (checkWin(currentPlayer.marker)){
+			alert(currentPlayer.name + 'wins!');
+		}else{
+			changeTurn()
+		}
+		
 	}
-	numColumns = board[0].length;
-	row = parseInt(positionIndex / numColumns);
-	col = positionIndex % numColumns;
-	return [row, col];
+	console.log(`Players Turn : ${currentPlayer.name}`)
+} 
+
+function checkRows(currentPlayerMove){
+	for(let i=0;i<3;i++){
+		if(board[i][0]=== currentPlayerMove && board[i][1]===currentPlayerMove && board[i][2] === currentPlayerMove){
+			return true;
+		}
+	}
+}
+
+function checkColumns(currentPlayerMove){
+	for(let i= 0;i<3;i++){
+		if(board[0][i] ===currentPlayerMove && board[1][i]=== currentPlayerMove && board[2][i]=== currentPlayerMove){
+			return true;
+		} 
+	}
+
+}
+
+function checkDiagonal(currentPlayerMove){
+	if (
+		(board[0][0] === currentPlayerMove && board[1][1] === currentPlayerMove && board[2][2] ===currentPlayerMove) ||
+		(board[0][2] === currentPlayerMove && board[1][1] === currentPlayerMove && board[2][0] === currentPlayerMove)
+	){
+		return true;
+	}
+}
+
+function checkWin(currentPlayerMove){
+	return checkRows(currentPlayerMove) || checkColumns(currentPlayerMove) || checkDiagonal(currentPlayerMove);
 }
