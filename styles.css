@@ -6,6 +6,9 @@
 	display:none;
 }
 
+h1{
+	text-align:center;
+}
 .board{
 	width:100vw;
 	height:100vh;
@@ -21,6 +24,11 @@
 	width: 100px;
 	height: 100px;
 	border: 1px solid black;
+	font-size: 9vw;
+	font-family: 'Indie Flower', 'Comic Sans', cursive;
+	display:flex;
+	align-items: center;
+	justify-content:center;
 }
 
 .cell:first-child,

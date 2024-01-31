@@ -2,6 +2,7 @@ const playerOneName=  document.querySelector("#playerOneName");
 const playerTwoName=  document.querySelector("#playerTwoName");
 const form = document.querySelector(".gameStart");
 const gameBoard = document.querySelector(".load");
+const cell = document.querySelector(".cell")
 
 let board = [
 		['','',''],
@@ -10,15 +11,16 @@ let board = [
 	];
 let player1Turn = true;
 
-function player(name, marker){
+function player(name, marker, color){
 
 	this.name = name;
 	this.marker = marker;
+	this.color = color;
 }
 
 function createPlayers(){
-	const player1= new player("player1","X");
-	const player2= new player("player2","O");
+	const player1= new player("player1","X","#3498db");
+	const player2= new player("player2","O","#2ecc71");
 	return {player1, player2}
 
 }
@@ -36,7 +38,7 @@ function changeTurn(){
 	player1Turn = !player1Turn
 }
 
-function updateGame(r,c){
+function updateGame(r,c,element){
 	let {player1, player2} = createPlayers();
 	player1.name= playerOneName.value;
 	player2.name= playerTwoName.value;
@@ -52,6 +54,8 @@ function updateGame(r,c){
 	console.log(player1.name, player2.name);
 	if( board[r][c] == ''){
 		board[r][c] = currentPlayer.marker;
+		element.style.color = currentPlayer.color;
+		element.innerHTML +=  currentPlayer.marker
 		console.log(board)
 		if (checkWin(currentPlayer.marker)){
 			alert(currentPlayer.name + 'wins!');
