@@ -2,7 +2,8 @@ const playerOneName=  document.querySelector("#playerOneName");
 const playerTwoName=  document.querySelector("#playerTwoName");
 const form = document.querySelector(".gameStart");
 const gameBoard = document.querySelector(".load");
-const cell = document.querySelector(".cell")
+const startGameBtn = document.querySelector(".createPlayers");
+const playerForm = document.querySelector(".playerForm");
 
 let board = [
 		['','',''],
@@ -24,13 +25,18 @@ function createPlayers(){
 	return {player1, player2}
 
 }
+
+function addPlayers(){
+	playerForm.style.display = 'block';
+	startGameBtn.style.display = 'none';
+}
 	
 function startGame(){
 showBoard();
 }
 ;
 function showBoard(){
-	form.style.display = 'none';
+	playerForm.style.display = 'none';
 	gameBoard.style.display = 'block'
 }
 
@@ -109,3 +115,6 @@ function checkDraw(board){
 	}
 	return true;
 }
+//TODO add styling to  the forms
+//TODO Add Hover effect
+//TODO Style winning form

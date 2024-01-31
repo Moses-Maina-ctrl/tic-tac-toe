@@ -13,14 +13,19 @@
 </head>
 <body>
 	<h1>Tic Tac Toe</h1>
+	<div class= "playerForm" >
 	<form class="gameStart">
-		<label>Player One :</label>
+		<label class="player1">Player One :</label>
 		<input type="text" id="playerOneName" required/>
-		<label>Player Two :</label>
+		<label class="player2">Player Two :</label>
 		<input type="text" id="playerTwoName" required/>
-		<input type="button" value="Start Game" onclick= "startGame()"/>
+		<input type="button" value="Start Game" class="btn" onclick= "startGame()"/>
 		
 	</form>
+	</div>
+	<div class="buttonContainer">
+	<button class="createPlayers btn" onclick="addPlayers()">Start Game</button>
+	</div>
 	<div class="load">
 				<div class="board">
 					<div class="cell" onclick="updateGame(0,0,this)"></div>
@@ -34,12 +39,6 @@
 					<div class="cell"  onclick="updateGame(2,2,this)"></div>
 				</div>
 
-	</div>
-	<div id="winAnnounce" class ="modal">
-		<div class="modal-content">
-			<p id="winText"></p>
-			<button  value="reset">Restart</button>
-		</div>
 	</div>
 </body>
 </html>
