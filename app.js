@@ -19,8 +19,8 @@ function player(name, marker, color){
 }
 
 function createPlayers(){
-	const player1= new player("player1","X","#3498db");
-	const player2= new player("player2","O","#2ecc71");
+	const player1= new player("player1","X","#ff6f61");
+	const player2= new player("player2","O","#40e0d0");
 	return {player1, player2}
 
 }
@@ -59,7 +59,9 @@ function updateGame(r,c,element){
 		console.log(board)
 		if (checkWin(currentPlayer.marker)){
 			alert(currentPlayer.name + 'wins!');
-		}else{
+		}else if (checkDraw(board)){
+			alert("Draw!");
+		} else{
 			changeTurn()
 		}
 		
@@ -95,4 +97,15 @@ function checkDiagonal(currentPlayerMove){
 
 function checkWin(currentPlayerMove){
 	return checkRows(currentPlayerMove) || checkColumns(currentPlayerMove) || checkDiagonal(currentPlayerMove);
+}
+
+function checkDraw(board){
+	for(let i=0; i < board.length; i++){
+		for( let j = 0; j < board[i].length; j++){
+			if (board[i][j] ===''){
+				return false;
+			}
+		}
+	}
+	return true;
 }
