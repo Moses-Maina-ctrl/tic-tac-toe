@@ -4,6 +4,8 @@ const form = document.querySelector(".gameStart");
 const gameBoard = document.querySelector(".load");
 const startGameBtn = document.querySelector(".createPlayers");
 const playerForm = document.querySelector(".playerForm");
+const winMessageContainer = document.querySelector("#win-message");
+const winMessage = document.querySelector("#win");
 
 let board = [
 		['','',''],
@@ -17,7 +19,7 @@ function player(name, marker, color){
 	this.name = name;
 	this.marker = marker;
 	this.color = color;
-}
+} 
 
 function createPlayers(){
 	const player1= new player("player1","X","#ff6f61");
@@ -64,11 +66,14 @@ function updateGame(r,c,element){
 		element.innerHTML +=  currentPlayer.marker
 		console.log(board)
 		if (checkWin(currentPlayer.marker)){
-			alert(currentPlayer.name + 'wins!');
+			winMessage.innerText =`${currentPlayer.name}  wins!`;
+			winMessageContainer.style.display ='flex';
+
 		}else if (checkDraw(board)){
-			alert("Draw!");
+			winMessage.innerText ='Its a Draw!';
+			winMessageContainer.style.display ='flex';
 		} else{
-			changeTurn()
+			changeTurn() 
 		}
 		
 	}
@@ -114,6 +119,21 @@ function checkDraw(board){
 		}
 	}
 	return true;
+}
+
+function reset(){
+	board = [
+	['', '', ''],
+	['', '', ''],
+	['', '', '']
+    ];
+
+    document.querySelectorAll('.cell').forEach(cell => {
+      cell.innerHTML = '';
+    });
+	winMessageContainer.style.display = 'none'
+	player1Turn= true;
+
 }
 //TODO add styling to  the forms
 //TODO Add Hover effect
