@@ -1,2 +1,2 @@
-# tic-tac-toe
+# Tic-tac-toe
 A simple Tic-Tac-Toe game. 
